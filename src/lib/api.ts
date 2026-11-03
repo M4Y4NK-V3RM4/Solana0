@@ -1,7 +1,12 @@
 import type { Profile } from './profile';
-import type { ScanResult } from '../server/schemas';
+import type { DraftResult, ScanResult, SpotResult } from '../server/schemas';
 
-export type { ScanResult };
+export type { DraftResult, ScanResult, SpotResult };
+
+export interface ImageInput {
+  base64: string;
+  mediaType: string;
+}
 
 export interface ChatMessage {
   role: 'user' | 'assistant';
@@ -41,6 +46,14 @@ export function askAI(messages: ChatMessage[], profile: Profile | null) {
   return post<{ reply: string }>('/api/ask', { messages, profile: ctx(profile) });
 }
 
-export function scanDocument(image: { base64: string; mediaType: string }, note: string, profile: Profile | null) {
+export function scanDocument(image: ImageInput, note: string, profile: Profile | null) {
   return post<{ result: ScanResult }>('/api/scan', { image, note, profile: ctx(profile) });
+}
+
+export function spotCheck(description: string, image: ImageInput | undefined, profile: Profile | null) {
+  return post<{ result: SpotResult }>('/api/spot', { description, image, profile: ctx(profile) });
+}
+
+export function writeDraft(templateId: string, details: string, image: ImageInput | undefined, profile: Profile | null) {
+  return post<{ result: DraftResult }>('/api/draft', { templateId, details, image, profile: ctx(profile) });
 }

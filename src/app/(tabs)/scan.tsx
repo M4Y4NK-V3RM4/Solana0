@@ -1,33 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
-import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
-import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Image, Platform, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Badge, Body, Bullets, Button, Card, Disclaimer, Field, H1, H2, Row, Screen } from '@/components/ui';
 import { scanDocument, type ScanResult } from '@/lib/api';
 import { useT } from '@/lib/i18n';
 import { useProfile } from '@/lib/profile';
+import { pickImage, type PickedImage } from '@/lib/image';
 import { findLaw, findOffence } from '@/lib/search';
 import { space, useTheme } from '@/lib/theme';
-
-interface Picked {
-  uri: string;
-  base64: string;
-  mediaType: 'image/jpeg';
-}
-
-/** Shrink to at most 1600px on the long side and re-encode as JPEG to keep uploads small. */
-async function prepare(asset: ImagePicker.ImagePickerAsset): Promise<Picked> {
-  const longSide = Math.max(asset.width, asset.height);
-  const ctx = ImageManipulator.manipulate(asset.uri);
-  if (longSide > 1600) {
-    ctx.resize(asset.width >= asset.height ? { width: 1600 } : { height: 1600 });
-  }
-  const rendered = await ctx.renderAsync();
-  const out = await rendered.saveAsync({ format: SaveFormat.JPEG, compress: 0.8, base64: true });
-  return { uri: out.uri, base64: out.base64 ?? '', mediaType: 'image/jpeg' };
-}
 
 function Section({ title, items }: { title: string; items: string[] }) {
   if (!items.length) return null;
@@ -122,7 +103,7 @@ export default function Scan() {
   const c = useTheme();
   const { t } = useT();
   const { profile } = useProfile();
-  const [picked, setPicked] = useState<Picked | null>(null);
+  const [picked, setPicked] = useState<PickedImage | null>(null);
   const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -132,17 +113,8 @@ export default function Scan() {
     setError(null);
     setResult(null);
     try {
-      if (fromCamera && Platform.OS !== 'web') {
-        const perm = await ImagePicker.requestCameraPermissionsAsync();
-        if (!perm.granted) {
-          setError('Camera permission is needed to take a photo.');
-          return;
-        }
-      }
-      const opts: ImagePicker.ImagePickerOptions = { mediaTypes: ['images'], quality: 1 };
-      const res = fromCamera ? await ImagePicker.launchCameraAsync(opts) : await ImagePicker.launchImageLibraryAsync(opts);
-      if (res.canceled || !res.assets[0]) return;
-      setPicked(await prepare(res.assets[0]));
+      const img = await pickImage(fromCamera);
+      if (img) setPicked(img);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not open the image.');
     }

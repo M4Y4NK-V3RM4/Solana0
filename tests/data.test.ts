@@ -1,8 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { CHECKLISTS } from '../src/data/checklists';
-import { LAWS } from '../src/data/laws';
-import { OFFENCES } from '../src/data/offences';
+import { LAWS, OFFENCES } from '../src/data/library';
 import { QUIZ } from '../src/data/quiz';
 import { SIGNS } from '../src/data/signs';
 import { estimateFine } from '../src/lib/fines';
@@ -52,4 +51,32 @@ test('fine calculator handles overloading, passengers, officers and state multip
 test('knowledge base sent to the AI includes every entry id', () => {
   const kb = renderKnowledgeBase();
   for (const id of allIds) assert.ok(kb.includes(`[${id}]`), id);
+});
+
+test('checklist report marks defects and unchecked items', async () => {
+  const { buildReport } = await import('../src/lib/report');
+  const list = CHECKLISTS[0];
+  const text = buildReport(list, { 'Vehicle / reference no.': 'DL1C AB 1234' }, { '0.0': { mark: 'ok' }, '0.1': { mark: 'defect', remark: 'expired' } }, new Date(0));
+  assert.match(text, /Vehicle \/ reference no\.: DL1C AB 1234/);
+  assert.match(text, /\[DEFECT\] .* — expired/);
+  assert.match(text, /1 defect\(s\) found/);
+});
+
+test('state view replaces central fines with the state amount and hides other states', async () => {
+  const { offencesFor, lawsFor } = await import('../src/data/library');
+  assert.ok(offencesFor('DL').some((o) => o.id === 'off-194d'));
+  assert.ok(lawsFor('DL').some((l) => l.id === 'dl-old-vehicles'));
+  assert.ok(!lawsFor('MH').some((l) => l.id === 'dl-old-vehicles'));
+});
+
+test('knowledge base is sent whole while small', async () => {
+  const { knowledgeFor, FULL_KB_LIMIT, knowledgeSize } = await import('../src/server/knowledge');
+  assert.ok(knowledgeSize() < FULL_KB_LIMIT);
+  assert.equal(knowledgeFor('helmet', 'DL').complete, true);
+});
+
+test('officials quiz answers are valid', async () => {
+  const { OFFICIAL_QUIZ } = await import('../src/data/quiz');
+  assert.ok(OFFICIAL_QUIZ.length >= 20);
+  for (const q of OFFICIAL_QUIZ) assert.ok(q.answer >= 0 && q.answer < q.options.length, q.id);
 });

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { Body, Button, Chip, Field, H2, Row } from './ui';
 import { translate } from '@/lib/i18n';
-import { OFFICIAL_TYPES, STATES, useProfile, type Language, type OfficialType, type Role } from '@/lib/profile';
+import { LAUNCH_STATE, OFFICIAL_TYPES, STATES, useProfile, type Language, type OfficialType, type Role } from '@/lib/profile';
 import { radius, space, useTheme } from '@/lib/theme';
 
 function RoleCard({ selected, icon, title, hint, onPress }: { selected: boolean; icon: 'person-outline' | 'shield-checkmark-outline'; title: string; hint: string; onPress: () => void }) {
@@ -42,7 +42,7 @@ export function ProfileForm({ submitLabel, onDone }: { submitLabel?: string; onD
   const [role, setRole] = useState<Role | null>(profile?.role ?? null);
   const [officialType, setOfficialType] = useState<OfficialType>(profile?.officialType ?? 'mvi');
   const [name, setName] = useState(profile?.name ?? '');
-  const [state, setState] = useState(profile?.state ?? '');
+  const [state, setState] = useState(profile?.state ?? LAUNCH_STATE);
   const [stateQuery, setStateQuery] = useState('');
   const t = (k: Parameters<typeof translate>[1]) => translate(language, k);
 
@@ -62,8 +62,8 @@ export function ProfileForm({ submitLabel, onDone }: { submitLabel?: string; onD
         <H2>{t('whoAreYou')}</H2>
         <Body muted>{t('whoAreYouHint')}</Body>
         <Row wrap gap={space.md} style={{ alignItems: 'stretch' }}>
-          <RoleCard selected={role === 'citizen'} icon="person-outline" title={t('citizen')} hint={t('citizenHint')} onPress={() => setRole('citizen')} />
           <RoleCard selected={role === 'official'} icon="shield-checkmark-outline" title={t('official')} hint={t('officialHint')} onPress={() => setRole('official')} />
+          <RoleCard selected={role === 'citizen'} icon="person-outline" title={t('citizen')} hint={t('citizenHint')} onPress={() => setRole('citizen')} />
         </Row>
         {role === 'official' ? (
           <Row wrap>
@@ -79,6 +79,7 @@ export function ProfileForm({ submitLabel, onDone }: { submitLabel?: string; onD
       <View style={{ gap: space.sm }}>
         <H2>{t('yourState')}</H2>
         {state ? <Body>✓ {state}</Body> : null}
+        {state && state !== LAUNCH_STATE ? <Body muted>{language === 'hi' ? 'अभी पूर्ण राज्य-विशेष सामग्री केवल दिल्ली के लिए है; अन्य राज्यों में केंद्रीय कानून दिखेगा।' : 'State-specific content is being built for Delhi first; other states show central law for now.'}</Body> : null}
         <Field placeholder="Search…" value={stateQuery} onChangeText={setStateQuery} />
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: space.sm }}>
           {states.map((s) => (

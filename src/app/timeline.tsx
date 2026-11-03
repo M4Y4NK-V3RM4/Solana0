@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import { Body, H1, Screen } from '@/components/ui';
-import { HISTORY } from '@/data/history';
+import { HISTORY } from '@/data/library';
 import { space, useTheme } from '@/lib/theme';
 
 export default function Timeline() {

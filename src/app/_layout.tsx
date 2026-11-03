@@ -26,6 +26,10 @@ function RootStack() {
         <Stack.Screen name="fines" options={{ title: 'Fine calculator' }} />
         <Stack.Screen name="timeline" options={{ title: 'Law timeline' }} />
         <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+        <Stack.Screen name="spot" options={{ title: 'On-the-spot assistant' }} />
+        <Stack.Screen name="drafts" options={{ title: 'Drafts & letters' }} />
+        <Stack.Screen name="draft/[id]" options={{ title: 'Draft' }} />
+        <Stack.Screen name="updates" options={{ title: 'What changed' }} />
       </Stack>
     </>
   );

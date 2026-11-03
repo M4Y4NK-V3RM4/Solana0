@@ -112,6 +112,7 @@ export function Field(props: TextInputProps & { label?: string }) {
     <View style={{ gap: space.xs }}>
       {label ? <Text style={{ color: c.muted, fontSize: 13, fontWeight: '600' }}>{label}</Text> : null}
       <TextInput
+        accessibilityLabel={label ?? rest.placeholder}
         placeholderTextColor={c.muted}
         style={[styles.input, { color: c.text, borderColor: c.border, backgroundColor: c.card }, style]}
         {...rest}

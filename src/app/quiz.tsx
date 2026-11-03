@@ -1,10 +1,12 @@
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { RoadSign } from '@/components/RoadSign';
 import { Body, Button, Card, H1, H2, Row, Screen } from '@/components/ui';
-import { QUIZ } from '@/data/quiz';
+import { OFFICIAL_QUIZ, QUIZ } from '@/data/quiz';
 import { SIGNS } from '@/data/signs';
 import { useT } from '@/lib/i18n';
+import { useHydrated } from '@/lib/useHydrated';
 import { radius, space, useTheme } from '@/lib/theme';
 
 const ROUND = 15;
@@ -21,10 +23,13 @@ function shuffle<T>(arr: T[]): T[] {
 export default function Quiz() {
   const c = useTheme();
   const { t, pick } = useT();
+  const params = useLocalSearchParams<{ set?: string }>();
+  const set = useHydrated() ? params.set : undefined;
+  const bank = set === 'official' ? OFFICIAL_QUIZ : QUIZ;
   const [seed, setSeed] = useState(0);
   // Same order on the server and the first client render; shuffle after mount to avoid a hydration mismatch.
-  const [questions, setQuestions] = useState(() => QUIZ.slice(0, ROUND));
-  useEffect(() => setQuestions(shuffle(QUIZ).slice(0, ROUND)), [seed]);
+  const [questions, setQuestions] = useState(() => bank.slice(0, ROUND));
+  useEffect(() => setQuestions(shuffle(bank).slice(0, ROUND)), [seed, bank]);
   const [index, setIndex] = useState(0);
   const [chosen, setChosen] = useState<number | null>(null);
   const [score, setScore] = useState(0);
@@ -38,7 +43,7 @@ export default function Quiz() {
         <H1>
           {t('score')}: {score} / {questions.length}
         </H1>
-        <Body>{pass ? 'Well done — you would likely pass the learner’s licence test.' : 'Keep practising. Review the road signs and the explanations.'}</Body>
+        <Body>{pass ? (set === 'official' ? 'Well done — strong command of the Act.' : 'Well done — you would likely pass the learner’s licence test.') : 'Keep practising and review the explanations.'}</Body>
         <Button
           label={t('tryAgain')}
           icon="refresh"
@@ -58,6 +63,7 @@ export default function Quiz() {
 
   return (
     <Screen>
+      <Stack.Screen options={{ title: set === 'official' ? 'Exam practice (officials)' : 'Practice test' }} />
       <Body muted>
         {index + 1} / {questions.length} · {t('score')} {score}
       </Body>

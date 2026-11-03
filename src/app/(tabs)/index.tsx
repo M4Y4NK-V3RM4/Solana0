@@ -3,9 +3,9 @@ import { router } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import { LawCard } from '@/components/LawCards';
 import { Body, Card, Disclaimer, H1, H2, Row, Screen, Tile, type IconName } from '@/components/ui';
-import { LAWS } from '@/data/laws';
+import { LAWS } from '@/data/library';
 import { useT } from '@/lib/i18n';
-import { OFFICIAL_TYPES, useProfile } from '@/lib/profile';
+import { OFFICIAL_TYPES, stateCode, useProfile } from '@/lib/profile';
 import { space, useTheme } from '@/lib/theme';
 
 type Action = { icon: IconName; title: string; subtitle: string; href: string };
@@ -23,19 +23,26 @@ export default function Home() {
     { icon: 'school-outline', title: t('practiceTest'), subtitle: hi ? 'लर्नर लाइसेंस की तैयारी' : 'Prepare for the learner test', href: '/quiz' },
     { icon: 'warning-outline', title: t('roadSigns'), subtitle: hi ? 'सभी संकेत सीखें' : 'Learn what each sign means', href: '/signs' },
     { icon: 'calculator-outline', title: t('fineCalculator'), subtitle: hi ? 'किस अपराध पर कितना जुर्माना' : 'What each offence costs', href: '/fines' },
+    { icon: 'create-outline', title: hi ? 'पत्र लिखें' : 'Write a letter', subtitle: hi ? 'शिकायत, आरटीआई, उत्तर' : 'Grievance, RTI, reply to notice', href: '/drafts' },
+    { icon: 'newspaper-outline', title: hi ? 'क्या बदला' : 'What changed', subtitle: hi ? 'नए नियम' : 'New rules', href: '/updates' },
   ];
   const officialActions: Action[] = [
-    { icon: 'scan-outline', title: hi ? 'दस्तावेज़ स्कैन' : 'Scan a document', subtitle: hi ? 'शिकायत, नोटिस, चालान' : 'Complaints, notices, challans', href: '/scan' },
+    { icon: 'flash-outline', title: hi ? 'मौके पर सहायक' : 'On-the-spot assistant', subtitle: hi ? 'धारा, दंड, प्रक्रिया तुरंत' : 'Sections, penalty, procedure now', href: '/spot' },
+    { icon: 'create-outline', title: hi ? 'मसौदे' : 'Drafts', subtitle: hi ? 'मेमो, पावती, रिपोर्ट, उत्तर' : 'Memos, acknowledgements, reports', href: '/drafts' },
     { icon: 'clipboard-outline', title: t('checklists'), subtitle: hi ? 'फिटनेस, ड्राइविंग टेस्ट, जाँच' : 'Fitness, driving test, roadside', href: '/tools' },
+    { icon: 'scan-outline', title: hi ? 'दस्तावेज़ स्कैन' : 'Scan a document', subtitle: hi ? 'शिकायत, नोटिस, चालान' : 'Complaints, notices, challans', href: '/scan' },
+    { icon: 'newspaper-outline', title: hi ? 'क्या बदला' : 'What changed', subtitle: hi ? 'नए नियम और अधिसूचनाएँ' : 'New rules and notifications', href: '/updates' },
     { icon: 'calculator-outline', title: t('fineCalculator'), subtitle: hi ? 'धारा अनुसार दंड' : 'Penalty by section', href: '/fines' },
-    { icon: 'chatbubbles-outline', title: t('ask'), subtitle: hi ? 'धारा, शक्तियाँ, प्रक्रिया' : 'Sections, powers, procedure', href: '/ask' },
   ];
   const actions = official ? officialActions : citizenActions;
 
   const featuredIds = official
-    ? ['mva-206', 'mva-213', 'mva-56', 'mva-210b', 'mva-136a']
-    : ['enf-echallan', 'mva-129', 'mva-134a', 'mva-130', 'mva-14'];
-  const featured = featuredIds.map((id) => LAWS.find((l) => l.id === id)!).filter(Boolean);
+    ? ['mva-206', 'mva-207', 'dl-old-vehicles', 'mva-210b', 'mva-136a']
+    : ['enf-echallan', 'mva-129', 'dl-old-vehicles', 'mva-134a', 'mva-130'];
+  const code = stateCode(profile);
+  const featured = featuredIds
+    .map((id) => LAWS.find((l) => l.id === id))
+    .filter((l): l is NonNullable<typeof l> => !!l && (!l.jurisdiction || l.jurisdiction === 'central' || l.jurisdiction === code));
 
   return (
     <Screen>
@@ -67,7 +74,7 @@ export default function Home() {
           {official
             ? hi
               ? 'उदा. “बिना परमिट टैक्सी पर कौन-सी धारा लगेगी?”'
-              : 'e.g. “Which section applies to a taxi running without a permit?”'
+              : 'e.g. “Which sections apply to a taxi running without a permit in Delhi?”'
             : hi
               ? 'उदा. “बिना हेलमेट पर कितना जुर्माना है?”'
               : 'e.g. “What is the fine for riding without a helmet?”'}

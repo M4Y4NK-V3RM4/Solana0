@@ -62,45 +62,61 @@ export const HISTORY: HistoryEvent[] = [
   },
   {
     year: '2019',
+    date: '2019-04-01',
     title: 'High Security Registration Plates for new vehicles',
     detail: 'HSRP became mandatory for all new vehicles sold from 1 April 2019.',
   },
   {
+    year: '2018',
+    date: '2018-10',
+    jurisdiction: 'DL',
+    title: 'Old vehicles barred in Delhi-NCR',
+    detail:
+      'The Supreme Court (M.C. Mehta v. Union of India, October 2018) upheld the ban on diesel vehicles older than 10 years and petrol vehicles older than 15 years plying in Delhi-NCR, first ordered by the National Green Tribunal in 2015.',
+  },
+  {
     year: '2019',
+    date: '2019-09-01',
     title: 'Motor Vehicles (Amendment) Act, 2019',
     detail:
       'The biggest overhaul since 1988. Most provisions took effect on 1 September 2019. Fines went up sharply (helmet ₹100→₹1,000, drunk driving ₹2,000→₹10,000), juvenile offences made guardians liable, Good Samaritans got statutory protection, electronic enforcement became law, hit-and-run compensation rose eightfold, and states got power to raise fines.',
   },
   {
     year: '2020',
+    date: '2020-04-01',
     title: 'BS-VI nationwide',
     detail: 'India skipped BS-V and moved directly from BS-IV to BS-VI emission standards on 1 April 2020.',
   },
   {
     year: '2021',
+    date: '2021-02-15',
     title: 'FASTag mandatory',
     detail: 'Electronic toll payment through FASTag became mandatory at national highway toll plazas from 15 February 2021.',
   },
   {
     year: '2021',
+    date: '2021-07-01',
     title: 'Driver training centres and the BH series',
     detail:
       'Accredited Driver Training Centre rules took effect on 1 July 2021, letting graduates skip the RTO driving test. The vehicle scrapping policy was launched in August, and the “BH” (Bharat) registration series was notified for people who move between states.',
   },
   {
     year: '2023',
+    date: '2023-02-15',
     title: 'Child safety on two-wheelers',
     detail:
       'From 15 February 2023 children aged 9 months to 4 years must wear a helmet and safety harness as pillion riders, with the speed limited to 40 km/h.',
   },
   {
     year: '2024',
+    date: '2024-07-01',
     title: 'Bharatiya Nyaya Sanhita replaces the IPC',
     detail:
       'From 1 July 2024, rash driving moved from IPC 279 to BNS 281, and death by negligence from IPC 304A (max. 2 years) to BNS 106 (max. 5 years). The stricter hit-and-run clause, BNS 106(2), was kept on hold after a nationwide transporters’ strike.',
   },
   {
     year: '2025',
+    date: '2025-05',
     title: 'Cashless treatment for accident victims',
     detail:
       'A national scheme provides cashless treatment up to ₹1.5 lakh per victim for up to seven days at designated hospitals.',

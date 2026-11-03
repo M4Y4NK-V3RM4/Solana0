@@ -8,6 +8,7 @@
     "@react-native-async-storage/async-storage": "2.2.0",
     "compression": "^1.8.2",
     "expo": "~58.0.23",
+    "expo-clipboard": "~58.0.4",
     "expo-constants": "~58.0.15",
     "expo-font": "~58.0.11",
     "expo-image-manipulator": "~58.0.16",
@@ -41,10 +42,11 @@
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
     "export:web": "expo export --platform web",
-    "serve": "node server.mjs",
+    "serve": "node --env-file-if-exists=.env server.mjs",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
-    "export:desktop": "expo export --platform web && node scripts/build-desktop-web.mjs"
+    "export:desktop": "expo export --platform web && node scripts/build-desktop-web.mjs",
+    "import-data": "node --import tsx scripts/import-data.ts"
   },
   "private": true
 }

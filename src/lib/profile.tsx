@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { STATE_CODES } from './profile-constants';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
 export type Role = 'citizen' | 'official';
@@ -63,18 +64,7 @@ export function useProfile() {
   return ctx;
 }
 
-export const OFFICIAL_TYPES: { id: OfficialType; label: string; labelHi: string }[] = [
-  { id: 'mvi', label: 'Motor Vehicles Inspector', labelHi: 'मोटर वाहन निरीक्षक' },
-  { id: 'police', label: 'Traffic police', labelHi: 'यातायात पुलिस' },
-  { id: 'rto', label: 'RTO / transport office staff', labelHi: 'आरटीओ / परिवहन कार्यालय' },
-  { id: 'other', label: 'Other official', labelHi: 'अन्य अधिकारी' },
-];
-
-export const STATES = [
-  'Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh',
-  'Chhattisgarh', 'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Goa', 'Gujarat', 'Haryana',
-  'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep',
-  'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry',
-  'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand',
-  'West Bengal',
-];
+export { LAUNCH_STATE, OFFICIAL_TYPES, STATE_CODES, STATES } from './profile-constants';
+export function stateCode(profile: Pick<Profile, 'state'> | null | undefined): string | undefined {
+  return profile?.state ? STATE_CODES[profile.state] : undefined;
+}

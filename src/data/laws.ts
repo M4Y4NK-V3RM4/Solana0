@@ -687,6 +687,28 @@ export const LAWS: LawEntry[] = [
     tags: ['e-challan', 'echallan', 'pay challan', 'contest challan', 'virtual court', 'lok adalat', 'fake challan', 'scam'],
   },
 
+  // ───────────── Delhi ─────────────
+  {
+    id: 'dl-old-vehicles',
+    source: 'Delhi-NCR',
+    ref: 'NGT 2015 / Supreme Court 2018',
+    title: 'Age limit for vehicles in Delhi-NCR',
+    titleHi: 'दिल्ली-एनसीआर में वाहनों की आयु सीमा',
+    category: 'vehicle-standards',
+    audience: 'both',
+    jurisdiction: 'DL',
+    summary:
+      'Diesel vehicles older than 10 years and petrol vehicles older than 15 years may not ply in Delhi-NCR. The National Green Tribunal ordered this in 2015, and the Supreme Court upheld it in M.C. Mehta v. Union of India (October 2018).',
+    keyPoints: [
+      'Age is counted from the date of registration.',
+      'Such vehicles found on the road can be impounded by enforcement teams.',
+      'Owners can scrap the vehicle at a registered scrapping facility, or get an NOC to re-register it in a state where it is still allowed.',
+      'Check the Delhi Transport Department’s current notification for the procedure and any exemptions (e.g. electric conversion).',
+    ],
+    related: ['cmvr-115', 'off-192'],
+    tags: ['old vehicle', '10 year diesel', '15 year petrol', 'end of life', 'ncr ban', 'scrap', 'impound', 'delhi'],
+  },
+
   // ───────────── CMVR 1989 ─────────────
   {
     id: 'cmvr-adtc',

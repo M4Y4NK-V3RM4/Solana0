@@ -1,11 +1,11 @@
 import { useLocalSearchParams } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { Body, Bullets, Card, Chip, Disclaimer, Field, H2, Row, Screen } from '@/components/ui';
-import { OFFENCES } from '@/data/offences';
+import { offencesFor } from '@/data/library';
 import { estimateFine, rupees } from '@/lib/fines';
 import { useT } from '@/lib/i18n';
-import { useProfile } from '@/lib/profile';
+import { stateCode, useProfile } from '@/lib/profile';
 import { radius, space, useTheme } from '@/lib/theme';
 
 export default function Fines() {
@@ -13,20 +13,25 @@ export default function Fines() {
   const { pick } = useT();
   const { profile } = useProfile();
   const params = useLocalSearchParams<{ offence?: string }>();
-  const [selected, setSelected] = useState<string[]>(params.offence ? [params.offence] : []);
+  const [selected, setSelected] = useState<string[]>([]);
+  // Apply ?offence= after mount so the pre-rendered page and first client render match.
+  useEffect(() => {
+    if (params.offence) setSelected((s) => (s.includes(params.offence!) ? s : [...s, params.offence!]));
+  }, [params.offence]);
   const [filter, setFilter] = useState('');
   const [tonnes, setTonnes] = useState('0');
   const [passengers, setPassengers] = useState('1');
   const [isOfficer, setIsOfficer] = useState(false);
 
-  const list = OFFENCES.filter((o) => (o.title + o.section + o.tags.join(' ')).toLowerCase().includes(filter.toLowerCase()));
+  const offences = useMemo(() => offencesFor(stateCode(profile)), [profile]);
+  const list = offences.filter((o) => (o.title + o.section + o.tags.join(' ')).toLowerCase().includes(filter.toLowerCase()));
   const results = useMemo(
     () =>
       selected
-        .map((id) => OFFENCES.find((o) => o.id === id)!)
+        .map((id) => offences.find((o) => o.id === id)!)
         .filter(Boolean)
         .map((o) => ({ o, r: estimateFine({ offence: o, excessTonnes: Number(tonnes) || 0, excessPassengers: Number(passengers) || 1, isOfficer }) })),
-    [selected, tonnes, passengers, isOfficer],
+    [selected, tonnes, passengers, isOfficer, offences],
   );
   const total = results.reduce((acc, { r }) => ({ min: acc.min + r.min, max: acc.max + r.max }), { min: 0, max: 0 });
 
@@ -34,7 +39,9 @@ export default function Fines() {
 
   return (
     <Screen>
-      <Body muted>Select one or more offences to see the central first-offence fine. Your state may compound at a different amount.</Body>
+      <Body muted>
+        Select one or more offences to see the first-offence fine. Where {profile?.state || 'your state'}’s own amount is in the library it is used and marked; otherwise the central penalty is shown.
+      </Body>
 
       <Card style={{ backgroundColor: c.primary, borderColor: c.primary }}>
         <Text style={{ color: c.primaryText, opacity: 0.8, fontWeight: '700', fontSize: 12 }}>ESTIMATED TOTAL</Text>

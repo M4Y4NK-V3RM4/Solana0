@@ -1,5 +1,4 @@
-import { LAWS } from '../data/laws';
-import { OFFENCES } from '../data/offences';
+import { isCentral, LAWS, OFFENCES } from '../data/library';
 import type { LawEntry, Offence } from '../data/types';
 
 export type SearchHit = { kind: 'law'; item: LawEntry; score: number } | { kind: 'offence'; item: Offence; score: number };
@@ -21,8 +20,9 @@ function scoreText(query: string, qTokens: string[], fields: { text: string; wei
   return score;
 }
 
-/** Simple keyword ranking over laws and offences. Runs on device, works offline. */
-export function searchAll(query: string, limit = 30): SearchHit[] {
+/** Simple keyword ranking over laws and offences. Runs on device, works offline. Pass a state code to hide other states' records. */
+export function searchAll(query: string, limit = 30, stateCode?: string): SearchHit[] {
+  const inScope = (j?: string) => isCentral(j) || !stateCode || j === stateCode;
   const qTokens = tokens(query);
   if (!qTokens.length) return [];
   // Let "s 129", "section 129" and "129" all hit section numbers.
@@ -30,6 +30,7 @@ export function searchAll(query: string, limit = 30): SearchHit[] {
 
   const hits: SearchHit[] = [];
   for (const law of LAWS) {
+    if (!inScope(law.jurisdiction)) continue;
     let score = scoreText(query, qTokens, [
       { text: law.title + ' ' + (law.titleHi ?? ''), weight: 3 },
       { text: law.tags.join(' '), weight: 3 },
@@ -41,6 +42,7 @@ export function searchAll(query: string, limit = 30): SearchHit[] {
     if (score > 0) hits.push({ kind: 'law', item: law, score });
   }
   for (const off of OFFENCES) {
+    if (!inScope(off.jurisdiction)) continue;
     let score = scoreText(query, qTokens, [
       { text: off.title + ' ' + (off.titleHi ?? ''), weight: 3 },
       { text: off.tags.join(' '), weight: 3 },

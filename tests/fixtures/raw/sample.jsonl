@@ -1,0 +1,7 @@
+// Test fixture: fake values, for testing the importer only.
+{"id":"dl.fine.test-194d","type":"fine","jurisdiction":"DL","instrument":"Test notification","reference":"194D","title":"Riding without a helmet (Delhi test amount)","fine":{"offence":"Riding without a helmet","first":"₹1,234 (test value)","min_rs":1234,"max_rs":1234},"status":"in_force","tags":["helmet"],"sources":[{"url":"https://example.org/test"}],"verified":true}
+{"id":"central.notif.test","type":"notification","jurisdiction":"central","title":"Test notification","summary_en":"A test notification.","effective_from":"2026-10-01","sources":[{"url":"https://example.org/n"}],"verified":true,"related":["missing.record"]}
+{"id":"central.unverified.test","type":"act_section","jurisdiction":"central","title":"Unverified test","sources":[{"url":"https://example.org/u"}],"verified":false}
+{"id":"central.conflict.test","type":"rule","jurisdiction":"central","title":"Conflict test","sources":[{"url":"https://example.org/c"}],"verified":true,"conflict":true,"notes":"two sources disagree"}
+{"id":"Bad ID","type":"rule","jurisdiction":"central","title":"x","sources":[]}
+not json at all

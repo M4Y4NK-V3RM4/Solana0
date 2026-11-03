@@ -33,6 +33,11 @@ const ProfileSchema = z.object({
   language: z.enum(['en', 'hi']),
 });
 
+const ImageSchema = z.object({
+  base64: z.string().min(100).max(8_000_000),
+  mediaType: z.enum(['image/jpeg', 'image/png', 'image/webp', 'image/gif']),
+});
+
 export const AskRequestSchema = z.object({
   messages: z
     .array(z.object({ role: z.enum(['user', 'assistant']), content: z.string().min(1).max(8000) }))
@@ -42,13 +47,60 @@ export const AskRequestSchema = z.object({
 });
 
 export const ScanRequestSchema = z.object({
-  image: z.object({
-    base64: z.string().min(100).max(8_000_000),
-    mediaType: z.enum(['image/jpeg', 'image/png', 'image/webp', 'image/gif']),
-  }),
+  image: ImageSchema,
   note: z.string().max(2000).default(''),
   profile: ProfileSchema,
 });
 
 export type AskRequest = z.infer<typeof AskRequestSchema>;
 export type ScanRequest = z.infer<typeof ScanRequestSchema>;
+
+// ── On-the-spot assistant (officials) ──
+
+export const SpotResultSchema = z.object({
+  summary: z.string().describe('One or two sentences: what the situation is legally.'),
+  offences: z
+    .array(
+      z.object({
+        reference: z.string().describe('e.g. "MV Act s.194D".'),
+        title: z.string(),
+        knowledgeId: z.string().describe('Matching knowledge base id, or empty string.'),
+        penalty: z.string().describe('Penalty from the knowledge base. Say if it is the central amount and the state amount is not in the library.'),
+        licenceSeizable: z.boolean().describe('True if the licence can be seized under s.206(4) for this offence.'),
+        notes: z.string().describe('Who it applies to (driver, owner, pillion) and any condition. Empty if none.'),
+      }),
+    )
+    .describe('Each offence that applies, most serious first. Empty if none.'),
+  documentsToCheck: z.array(z.string()).describe('Documents and records to verify, and how (DigiLocker/mParivahan, Vahan, Sarathi).'),
+  procedure: z.array(z.string()).describe('Steps to follow, in order.'),
+  giveToPerson: z.array(z.string()).describe('What to hand the driver/owner: challan copy, acknowledgement, seizure memo.'),
+  evidence: z.array(z.string()).describe('What to record: photos, breath test reading, witness details.'),
+  cautions: z.array(z.string()).describe('Things to be careful about: juveniles, injured persons, amounts to verify, limits of powers.'),
+  confidence: z.enum(['high', 'medium', 'low']),
+});
+export type SpotResult = z.infer<typeof SpotResultSchema>;
+
+export const SpotRequestSchema = z.object({
+  description: z.string().max(4000).default(''),
+  image: ImageSchema.optional(),
+  profile: ProfileSchema,
+});
+export type SpotRequest = z.infer<typeof SpotRequestSchema>;
+
+// ── Draft generator ──
+
+export const DraftResultSchema = z.object({
+  title: z.string().describe('Title of the document.'),
+  body: z.string().describe('The full draft as plain text with line breaks. Unknown facts as [PLACEHOLDERS] in square brackets.'),
+  placeholders: z.array(z.string()).describe('Each [PLACEHOLDER] the user must fill in.'),
+  notes: z.array(z.string()).describe('Points the user should check before sending: legal assumptions, deadlines, attachments.'),
+});
+export type DraftResult = z.infer<typeof DraftResultSchema>;
+
+export const DraftRequestSchema = z.object({
+  templateId: z.string().max(60),
+  details: z.string().max(6000).default(''),
+  image: ImageSchema.optional(),
+  profile: ProfileSchema,
+});
+export type DraftRequest = z.infer<typeof DraftRequestSchema>;

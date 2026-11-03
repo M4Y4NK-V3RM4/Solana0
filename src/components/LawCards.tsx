@@ -12,7 +12,9 @@ export function LawCard({ law }: { law: LawEntry }) {
     <Card onPress={() => router.push(`/law/${law.id}`)}>
       <Row wrap>
         <Badge label={`${law.source} · ${law.ref}`} />
+        {law.jurisdiction && law.jurisdiction !== 'central' ? <Badge label={law.jurisdiction} tone="accent" /> : null}
         {law.audience === 'official' ? <Badge label="Officials" tone="accent" /> : null}
+        {law.verified ? <Badge label="Verified" tone="success" /> : null}
       </Row>
       <Text style={{ color: c.text, fontSize: 16, fontWeight: '700' }}>{pick(law.title, law.titleHi)}</Text>
       <Text style={{ color: c.muted, fontSize: 13, lineHeight: 19 }} numberOfLines={2}>
@@ -29,6 +31,7 @@ export function OffenceCard({ offence }: { offence: Offence }) {
     <Card onPress={() => router.push(`/law/${offence.id}`)}>
       <Row wrap>
         <Badge label={`MV Act s.${offence.section}`} tone="danger" />
+        {offence.jurisdiction && offence.jurisdiction !== 'central' ? <Badge label={`${offence.jurisdiction} amount`} tone="accent" /> : null}
         {offence.licenceSeizable ? <Badge label="Licence can be seized" tone="accent" /> : null}
       </Row>
       <Text style={{ color: c.text, fontSize: 16, fontWeight: '700' }}>{pick(offence.title, offence.titleHi)}</Text>
