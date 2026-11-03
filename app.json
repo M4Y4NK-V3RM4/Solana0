@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "RoadNyay",
+    "slug": "roadnyay",
+    "version": "0.1.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "scheme": "roadnyay",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "in.roadnyay.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "RoadNyay uses the camera to photograph challans, notices and letters so the AI can explain them.",
+        "NSPhotoLibraryUsageDescription": "RoadNyay lets you pick a photo of a challan, notice or letter so the AI can explain it."
+      }
+    },
+    "android": {
+      "package": "in.roadnyay.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B2545",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "static",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "apiRoutes": true
+        }
+      ],
+      "expo-status-bar",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "RoadNyay lets you pick a photo of a challan, notice or letter so the AI can explain it.",
+          "cameraPermission": "RoadNyay uses the camera to photograph challans, notices and letters so the AI can explain them."
+        }
+      ],
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
