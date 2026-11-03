@@ -1,0 +1,52 @@
+{
+  "name": "roadnyay",
+  "version": "0.1.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.4.0",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "compression": "^1.8.2",
+    "expo": "~58.0.23",
+    "expo-clipboard": "~58.0.4",
+    "expo-constants": "~58.0.15",
+    "expo-font": "~58.0.11",
+    "expo-image-manipulator": "~58.0.16",
+    "expo-image-picker": "~58.0.10",
+    "expo-linking": "~58.0.16",
+    "expo-router": "~58.0.30",
+    "expo-server": "^58.0.6",
+    "expo-status-bar": "~58.0.4",
+    "express": "^5.3.0",
+    "morgan": "^1.12.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-screens": "~4.30.1",
+    "react-native-svg": "15.16.0",
+    "react-native-web": "^0.21.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "@types/react": "~19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "export:web": "expo export --platform web",
+    "serve": "node --env-file-if-exists=.env server.mjs",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "export:desktop": "expo export --platform web && node scripts/build-desktop-web.mjs",
+    "import-data": "node --import tsx scripts/import-data.ts"
+  },
+  "private": true
+}

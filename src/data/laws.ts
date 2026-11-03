@@ -1,0 +1,921 @@
+import type { LawEntry } from './types';
+
+/**
+ * Plain-language summaries of the Motor Vehicles Act, 1988 (as amended up to the
+ * MV (Amendment) Act, 2019), the Central Motor Vehicles Rules, 1989, and related
+ * criminal law. These are explanations, not the official text. The authoritative
+ * text is on India Code (indiacode.nic.in) and in the Gazette of India.
+ */
+export const LAWS: LawEntry[] = [
+  // ───────────── Licensing ─────────────
+  {
+    id: 'mva-3',
+    source: 'MV Act 1988',
+    ref: 'Section 3',
+    title: 'Driving licence is compulsory',
+    titleHi: 'ड्राइविंग लाइसेंस अनिवार्य है',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'No one may drive a motor vehicle in a public place without a valid driving licence for that class of vehicle. A transport vehicle (taxi, bus, truck, goods carrier) needs a licence that specifically authorises driving transport vehicles.',
+    keyPoints: [
+      'The licence must cover the class of vehicle you are driving (e.g. MCWG, LMV, transport).',
+      'A learner’s licence lets you drive only with a qualified instructor/licence holder beside you and an “L” plate displayed.',
+      'Penalty for violating this section is under Section 181.',
+      'Digital copies in DigiLocker or mParivahan are valid for inspection.',
+    ],
+    related: ['mva-4', 'off-181', 'mva-130'],
+    tags: ['licence', 'license', 'dl', 'driving licence', 'without licence', 'learner'],
+  },
+  {
+    id: 'mva-4',
+    source: 'MV Act 1988',
+    ref: 'Section 4',
+    title: 'Minimum age to drive',
+    titleHi: 'वाहन चलाने की न्यूनतम आयु',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'You must be 18 to drive a motor vehicle in a public place. At 16 you may drive a motorcycle with engine capacity not exceeding 50cc. Transport vehicles require the driver to be at least 20 years old.',
+    keyPoints: [
+      '16 years: motorcycle up to 50cc only (with consent of parent/guardian when applying).',
+      '18 years: all non-transport vehicles, including gearless and geared two-wheelers and cars.',
+      '20 years: transport vehicles.',
+      'When a juvenile commits an offence, the guardian or owner is liable under Section 199A.',
+    ],
+    related: ['off-199a', 'mva-3'],
+    tags: ['age', 'minor', 'underage', 'juvenile', '16', '18', 'teenager'],
+  },
+  {
+    id: 'mva-8',
+    source: 'MV Act 1988',
+    ref: 'Sections 7–8',
+    title: 'Learner’s licence',
+    titleHi: 'लर्नर लाइसेंस',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'Before getting a permanent driving licence, you obtain a learner’s licence by passing a test on traffic rules, signs and driving regulations. The learner’s licence is valid for six months.',
+    keyPoints: [
+      'The learner test can be taken online (Aadhaar-based authentication) in most states through the Parivahan Sarathi portal.',
+      'You must hold the learner’s licence for at least 30 days before taking the driving test.',
+      'Valid for 6 months. If it lapses you must apply again.',
+      'Display an “L” plate on the vehicle and drive only with an instructor or licence holder accompanying you (not required on a motorcycle in the same way, but the “L” sign is).',
+    ],
+    related: ['mva-9', 'cmvr-adtc'],
+    tags: ['learner', 'll', 'learning licence', 'll test', 'sarathi', 'online test'],
+  },
+  {
+    id: 'mva-9',
+    source: 'MV Act 1988',
+    ref: 'Section 9',
+    title: 'Getting a permanent driving licence',
+    titleHi: 'स्थायी ड्राइविंग लाइसेंस',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'A learner’s licence holder applies to the licensing authority and must pass a test of competence to drive (the driving test) conducted by a Motor Vehicles Inspector or other authorised officer.',
+    keyPoints: [
+      'The driving test checks vehicle control, observation, signalling, parking, reversing and following road regulations.',
+      'Graduates of an Accredited Driver Training Centre (ADTC) can be exempted from the driving test at the RTO.',
+      'If you fail, you can retake the test after 7 days.',
+      'Transport vehicle licences were opened up by removing the minimum educational qualification in 2019.',
+    ],
+    related: ['mva-8', 'cmvr-adtc', 'chk-driving-test'],
+    tags: ['dl', 'permanent licence', 'driving test', 'rto test', 'mvi test'],
+  },
+  {
+    id: 'mva-14',
+    source: 'MV Act 1988',
+    ref: 'Sections 14–15',
+    title: 'Licence validity and renewal',
+    titleHi: 'लाइसेंस की वैधता और नवीनीकरण',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'A non-transport licence issued before age 30 stays valid until you turn 40. If issued between 30 and 50, it is valid for 10 years; between 50 and 55, until age 60; after 55, for 5 years. A transport licence is valid for 5 years, and a licence to drive vehicles carrying hazardous goods for 3 years.',
+    keyPoints: [
+      'You can apply for renewal up to one year before expiry or within one year after expiry.',
+      'If more than a year has passed since expiry, the authority may require you to pass the driving test again.',
+      'Applicants over 40 must attach a medical certificate (Form 1-A).',
+      'The 2019 amendment extended transport licence validity from 3 to 5 years.',
+    ],
+    history:
+      'The 2019 amendment rewrote Section 14 to tie non-transport validity to the holder’s age and to extend transport licences to 5 years, reducing frequent renewals for commercial drivers.',
+    tags: ['renewal', 'expiry', 'expired licence', 'validity', 'medical certificate', 'form 1a'],
+  },
+  {
+    id: 'mva-19',
+    source: 'MV Act 1988',
+    ref: 'Section 19',
+    title: 'Disqualification and revocation of licence',
+    titleHi: 'लाइसेंस का निलंबन / रद्द होना',
+    category: 'licensing',
+    audience: 'official',
+    summary:
+      'The licensing authority may disqualify a person from holding a licence, or revoke it, after giving them a chance to be heard. Grounds include habitual criminal or drunk driving, using the vehicle to commit a cognizable offence, driving that endangers the public, and obtaining the licence by fraud.',
+    keyPoints: [
+      'The authority must record reasons in writing and give the holder an opportunity to be heard.',
+      'It may also direct the person to undergo a driver refresher training course.',
+      'An appeal lies to the prescribed appellate authority (Section 19(3)).',
+      'For offences under Sections 183, 184, 185, 189, 190, 194C, 194D and 194E the police can seize the licence and forward it for disqualification (Section 206(4)).',
+    ],
+    related: ['mva-206'],
+    tags: ['suspension', 'suspend', 'revocation', 'disqualify', 'cancel licence'],
+  },
+
+  // ───────────── Registration ─────────────
+  {
+    id: 'mva-39',
+    source: 'MV Act 1988',
+    ref: 'Section 39',
+    title: 'Registration is compulsory',
+    titleHi: 'वाहन पंजीकरण अनिवार्य',
+    category: 'registration',
+    audience: 'both',
+    summary:
+      'No motor vehicle may be driven in a public place unless it is registered and the certificate of registration is valid (not suspended or cancelled), and it displays the registration mark.',
+    keyPoints: [
+      'New vehicles are registered by the dealer at the time of sale in most states (dealer-point registration on Vahan).',
+      'A private (non-transport) vehicle’s registration is valid for 15 years and then renewable for 5 years at a time after a fitness check.',
+      'Penalty for driving an unregistered vehicle is under Section 192.',
+      'Since 2021, the “BH” (Bharat) series lets people who move between states often register without re-registration.',
+    ],
+    related: ['off-192', 'cmvr-50', 'mva-47'],
+    tags: ['registration', 'rc', 'number plate', 'unregistered', 'vahan', 'bh series'],
+  },
+  {
+    id: 'mva-47',
+    source: 'MV Act 1988',
+    ref: 'Section 47',
+    title: 'Moving a vehicle to another state',
+    titleHi: 'दूसरे राज्य में वाहन ले जाना',
+    category: 'registration',
+    audience: 'both',
+    summary:
+      'If a vehicle registered in one state is kept in another state for more than 12 months, the owner must apply for a new registration mark in the new state, with a No Objection Certificate from the original authority.',
+    keyPoints: [
+      'You may have to pay road tax in the new state; you can claim a pro-rata refund in the old state.',
+      'BH-series registration avoids this for eligible owners (defence, central/state government staff, companies with offices in 4+ states).',
+    ],
+    related: ['mva-39'],
+    tags: ['noc', 'transfer state', 're-registration', 'relocation', 'road tax'],
+  },
+  {
+    id: 'mva-50',
+    source: 'MV Act 1988',
+    ref: 'Section 50',
+    title: 'Transfer of ownership',
+    titleHi: 'स्वामित्व हस्तांतरण',
+    category: 'registration',
+    audience: 'both',
+    summary:
+      'When a vehicle is sold, the transfer of ownership must be reported to the registering authority. Until the transfer is recorded, the person named on the RC remains the owner in law, including for challans and accident liability.',
+    keyPoints: [
+      'Seller and buyer both sign Form 29; the buyer files Form 30 with the registering authority.',
+      'Sellers should ensure transfer is completed — otherwise e-challans and accident claims can still reach them.',
+      'If the owner dies, the heir must apply for transfer within the prescribed time.',
+    ],
+    tags: ['sale', 'transfer', 'ownership', 'form 29', 'form 30', 'second hand', 'used car'],
+  },
+  {
+    id: 'mva-56',
+    source: 'MV Act 1988',
+    ref: 'Section 56',
+    title: 'Fitness certificate for transport vehicles',
+    titleHi: 'परिवहन वाहन फिटनेस प्रमाणपत्र',
+    category: 'vehicle-standards',
+    audience: 'official',
+    summary:
+      'A transport vehicle is not validly registered unless it carries a valid certificate of fitness issued by the prescribed authority or an authorised testing station, certifying that it complies with the Act and Rules.',
+    keyPoints: [
+      'Fitness is checked by a Motor Vehicles Inspector or at an Automated Testing Station (ATS) where notified.',
+      'Rules made in 2021 provide for ATS-based fitness testing, being phased in across vehicle categories.',
+      'The authority can cancel the certificate if the vehicle no longer complies.',
+      'Driving a transport vehicle without fitness is treated as driving without valid registration.',
+    ],
+    related: ['chk-fitness', 'cmvr-62'],
+    tags: ['fitness', 'fc', 'transport vehicle', 'ats', 'automated testing station', 'mvi inspection'],
+  },
+
+  // ───────────── Permits ─────────────
+  {
+    id: 'mva-66',
+    source: 'MV Act 1988',
+    ref: 'Section 66',
+    title: 'Permits for transport vehicles',
+    titleHi: 'परिवहन वाहनों के लिए परमिट',
+    category: 'permits',
+    audience: 'both',
+    summary:
+      'An owner may not use a transport vehicle in a public place except under a permit granted by a Regional or State Transport Authority, covering how the vehicle is used (stage carriage, contract carriage, goods carriage, etc.).',
+    keyPoints: [
+      'Permit types include stage carriage, contract carriage, private service vehicle, goods carriage, national permit and All India Tourist permit.',
+      'Exemptions include government vehicles, ambulances, fire service and some small goods vehicles as notified.',
+      'Penalty for using a vehicle without a permit is under Section 192A.',
+    ],
+    related: ['off-192a'],
+    tags: ['permit', 'taxi', 'bus', 'truck', 'goods carriage', 'contract carriage', 'national permit', 'aitp'],
+  },
+
+  // ───────────── Road rules ─────────────
+  {
+    id: 'mva-112',
+    source: 'MV Act 1988',
+    ref: 'Section 112',
+    title: 'Speed limits',
+    titleHi: 'गति सीमा',
+    category: 'road-rules',
+    audience: 'both',
+    summary:
+      'No one may drive faster than the maximum speed fixed for the vehicle class or the speed posted on the road by the State Government or authorised authority.',
+    keyPoints: [
+      'Speed limits vary by road type and vehicle class; posted signs take precedence.',
+      'Penalty for overspeeding is under Section 183.',
+      'Speed cameras and other electronic devices can be used for enforcement (Section 136A).',
+    ],
+    related: ['off-183', 'mva-136a'],
+    tags: ['speed', 'overspeeding', 'speed limit', 'speed camera'],
+  },
+  {
+    id: 'mva-113',
+    source: 'MV Act 1988',
+    ref: 'Sections 113–114',
+    title: 'Weight limits and overloading',
+    titleHi: 'भार सीमा और ओवरलोडिंग',
+    category: 'road-rules',
+    audience: 'official',
+    summary:
+      'Goods vehicles must not exceed the gross vehicle weight or axle weights specified in the registration certificate. Authorised officers can require a vehicle to be weighed and to unload excess weight.',
+    keyPoints: [
+      'Officers can direct the driver to a weighbridge (Section 114).',
+      'Excess load must be removed at the owner’s risk before the vehicle continues.',
+      'Penalty for overloading and for refusing weighment is under Section 194.',
+    ],
+    related: ['off-194', 'off-194-2'],
+    tags: ['overloading', 'weighbridge', 'axle weight', 'gvw', 'goods vehicle', 'truck'],
+  },
+  {
+    id: 'mva-118',
+    source: 'MV Act 1988',
+    ref: 'Section 118',
+    title: 'Driving regulations',
+    titleHi: 'ड्राइविंग नियम',
+    category: 'road-rules',
+    audience: 'both',
+    summary:
+      'The Central Government makes driving regulations (the Motor Vehicles (Driving) Regulations, 2017) covering lane discipline, overtaking, turning, signalling, right of way, parking and pedestrian priority.',
+    keyPoints: [
+      'Keep left and overtake only from the right (except where lane rules say otherwise).',
+      'Give way to pedestrians at zebra crossings.',
+      'Do not use a hand-held mobile phone while driving.',
+      'Violating these regulations is punishable under Section 177A.',
+    ],
+    related: ['off-177a', 'off-184'],
+    tags: ['regulations', 'lane', 'overtaking', 'right of way', 'parking', 'zebra crossing', 'driving regulations 2017'],
+  },
+  {
+    id: 'mva-119',
+    source: 'MV Act 1988',
+    ref: 'Section 119',
+    title: 'Obeying traffic signs and signals',
+    titleHi: 'यातायात संकेतों का पालन',
+    category: 'road-rules',
+    audience: 'both',
+    summary:
+      'Every driver must obey mandatory traffic signs and directions given by a police officer regulating traffic.',
+    keyPoints: [
+      'Mandatory signs are circular; cautionary signs are triangular; informatory signs are rectangular.',
+      'Jumping a red light is treated as dangerous driving under Section 184.',
+      'Disobeying a lawful police direction is punishable under Section 179.',
+    ],
+    related: ['off-184', 'off-179'],
+    tags: ['signal', 'red light', 'traffic light', 'signs', 'police direction'],
+  },
+  {
+    id: 'mva-122',
+    source: 'MV Act 1988',
+    ref: 'Section 122',
+    title: 'Leaving a vehicle in a dangerous position',
+    titleHi: 'वाहन को खतरनाक स्थिति में छोड़ना',
+    category: 'road-rules',
+    audience: 'both',
+    summary:
+      'No one may leave a vehicle, or allow it to remain, in a public place where it is likely to cause danger, obstruction or inconvenience to other road users.',
+    keyPoints: [
+      'This covers dangerous parking, broken-down vehicles without warning, and blocking roads.',
+      'Police may tow or remove the vehicle (Section 127), and towing charges are recoverable.',
+    ],
+    tags: ['parking', 'no parking', 'towing', 'obstruction', 'abandoned vehicle'],
+  },
+  {
+    id: 'mva-128',
+    source: 'MV Act 1988',
+    ref: 'Section 128',
+    title: 'Two-wheeler pillion rules',
+    titleHi: 'दोपहिया पर पीछे बैठने के नियम',
+    category: 'safety',
+    audience: 'both',
+    summary:
+      'A two-wheeler driver may carry only one person in addition to themselves, and that person must sit on a proper seat fixed behind the driver’s seat with proper safety measures.',
+    keyPoints: [
+      'Triple riding is punishable under Section 194C with ₹1,000 and licence disqualification for 3 months.',
+      'Since 15 February 2023, children aged 9 months to 4 years must wear a crash helmet and be secured with a safety harness, and the speed must not exceed 40 km/h (CMVR Rule 138(7)).',
+    ],
+    related: ['off-194c', 'cmvr-138-7'],
+    tags: ['pillion', 'triple riding', 'two wheeler', 'bike', 'scooter', 'child'],
+  },
+  {
+    id: 'mva-129',
+    source: 'MV Act 1988',
+    ref: 'Section 129',
+    title: 'Helmets are compulsory',
+    titleHi: 'हेलमेट अनिवार्य',
+    category: 'safety',
+    audience: 'both',
+    summary:
+      'Every person over four years of age driving or riding on a two-wheeler must wear protective headgear conforming to BIS standards. A Sikh wearing a turban is exempt.',
+    keyPoints: [
+      'Applies to both the rider and the pillion passenger.',
+      'The helmet must meet BIS standards (ISI-marked) and be properly fastened.',
+      'Penalty: ₹1,000 and licence disqualification for 3 months (Section 194D).',
+      'The Central Government can prescribe safety measures for children under four (see Rule 138(7)).',
+    ],
+    history:
+      'Before 2019 the section allowed states to exempt categories of people and the fine was ₹100. The 2019 amendment narrowed the exemption to turban-wearing Sikhs and raised the fine tenfold, as two-wheeler riders make up the largest share of road deaths in India and head injuries are the main cause.',
+    related: ['off-194d', 'cmvr-138-7'],
+    tags: ['helmet', 'headgear', 'two wheeler', 'bike', 'pillion', 'isi', 'bis'],
+  },
+  {
+    id: 'mva-130',
+    source: 'MV Act 1988',
+    ref: 'Section 130',
+    title: 'Duty to produce licence and documents',
+    titleHi: 'दस्तावेज़ दिखाने का कर्तव्य',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'The driver must produce the driving licence, and the owner or driver must produce the registration certificate, insurance certificate, fitness certificate and permit, when demanded by a police officer in uniform or an officer of the Motor Vehicles Department.',
+    keyPoints: [
+      'Electronic documents in DigiLocker or mParivahan are legally valid (CMVR Rule 139 and IT Act).',
+      'You may produce the documents within 15 days at a police station or office, if you do not have them on the spot (per Rule 139).',
+      'Officers should verify documents electronically instead of seizing physical copies where possible.',
+    ],
+    related: ['mva-206'],
+    tags: ['documents', 'digilocker', 'mparivahan', 'show documents', 'police check', 'rc', 'insurance'],
+  },
+  {
+    id: 'mva-134',
+    source: 'MV Act 1988',
+    ref: 'Section 134',
+    title: 'Duty of driver after an accident',
+    titleHi: 'दुर्घटना के बाद चालक का कर्तव्य',
+    category: 'accidents',
+    audience: 'both',
+    summary:
+      'When an accident causes injury or damage, the driver must take all reasonable steps to get the injured person medical help (unless mob fury makes it impracticable), give required information to police, and report the accident at the nearest police station within 24 hours.',
+    keyPoints: [
+      'Inform the insurer in writing about the accident.',
+      'Failure to perform these duties is punishable under Section 187.',
+      'Registered medical practitioners must attend to the injured without waiting for formalities.',
+    ],
+    related: ['mva-134a', 'off-187', 'mva-161'],
+    tags: ['accident', 'injury', 'report accident', 'police station', 'hit and run', 'first aid'],
+  },
+  {
+    id: 'mva-134a',
+    source: 'MV Act 1988',
+    ref: 'Section 134A',
+    title: 'Protection of Good Samaritans',
+    titleHi: 'नेक मददगार (गुड समैरिटन) की सुरक्षा',
+    category: 'accidents',
+    audience: 'both',
+    summary:
+      'A Good Samaritan who in good faith helps an accident victim — giving emergency medical or non-medical care or taking them to hospital — is not liable for any civil or criminal action if the victim is injured or dies through negligence in providing that help.',
+    keyPoints: [
+      'You cannot be forced to reveal your identity or be a witness.',
+      'Hospitals cannot demand payment or detain the helper.',
+      'Since 2021 the government has also run a cash reward scheme for Good Samaritans who save lives in the golden hour.',
+    ],
+    history:
+      'MoRTH issued Good Samaritan guidelines in May 2015. In SaveLIFE Foundation v. Union of India (2016) the Supreme Court gave them the force of law. The 2019 amendment wrote this protection into the Act as Section 134A.',
+    related: ['mva-134', 'mva-162'],
+    tags: ['good samaritan', 'help accident victim', 'bystander', 'golden hour', 'hospital'],
+  },
+  {
+    id: 'mva-136a',
+    source: 'MV Act 1988',
+    ref: 'Section 136A',
+    title: 'Electronic monitoring and enforcement',
+    titleHi: 'इलेक्ट्रॉनिक निगरानी और प्रवर्तन',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'State governments must ensure electronic monitoring and enforcement of road safety on national highways, state highways, and roads in cities above notified population, using speed cameras, CCTV, body-wearable cameras, speed guns and similar devices.',
+    keyPoints: [
+      'This is the legal basis for e-challans generated from camera evidence.',
+      'Rules (CMVR Rule 167A) specify where cameras are placed and that the notice must be sent within 15 days with the evidence.',
+      'You can view and contest e-challans on the Parivahan e-Challan portal.',
+    ],
+    related: ['mva-112', 'enf-echallan'],
+    tags: ['e-challan', 'echallan', 'camera', 'cctv', 'speed gun', 'anpr', 'notice'],
+  },
+
+  // ───────────── Insurance & compensation ─────────────
+  {
+    id: 'mva-146',
+    source: 'MV Act 1988',
+    ref: 'Section 146',
+    title: 'Third-party insurance is compulsory',
+    titleHi: 'थर्ड-पार्टी बीमा अनिवार्य',
+    category: 'insurance',
+    audience: 'both',
+    summary:
+      'No one may use a motor vehicle in a public place unless there is a valid insurance policy covering third-party risks (death, injury or property damage to others).',
+    keyPoints: [
+      'Comprehensive (own-damage) insurance is optional; third-party cover is mandatory.',
+      'Government-owned vehicles may be exempted.',
+      'Penalty for driving uninsured: Section 196.',
+    ],
+    related: ['off-196', 'mva-166'],
+    tags: ['insurance', 'third party', 'uninsured', 'policy'],
+  },
+  {
+    id: 'mva-161',
+    source: 'MV Act 1988',
+    ref: 'Section 161',
+    title: 'Compensation for hit-and-run victims',
+    titleHi: 'हिट-एंड-रन पीड़ितों को मुआवज़ा',
+    category: 'accidents',
+    audience: 'both',
+    summary:
+      'Where the vehicle in an accident cannot be traced, the victim’s family can claim fixed compensation from the scheme: ₹2,00,000 for death and ₹50,000 for grievous hurt.',
+    keyPoints: [
+      'Apply through the claims enquiry officer / District Magistrate under the Compensation to Victims of Hit and Run Motor Accidents Scheme, 2022.',
+      'This is in addition to any claim if the vehicle is later traced (amounts adjust).',
+    ],
+    history:
+      'The 2019 amendment raised hit-and-run compensation from ₹25,000 (death) and ₹12,500 (grievous hurt) to ₹2 lakh and ₹50,000.',
+    related: ['mva-164', 'mva-166'],
+    tags: ['hit and run', 'untraced vehicle', 'compensation', 'solatium'],
+  },
+  {
+    id: 'mva-164',
+    source: 'MV Act 1988',
+    ref: 'Section 164',
+    title: 'Fixed (no-fault) compensation',
+    titleHi: 'निश्चित (बिना दोष) मुआवज़ा',
+    category: 'insurance',
+    audience: 'both',
+    summary:
+      'The owner or insurer must pay ₹5,00,000 for death and ₹2,50,000 for grievous hurt to the victim’s legal representatives, without the claimant having to prove negligence.',
+    keyPoints: [
+      'If the claimant chooses this route, they cannot also pursue the same claim under other provisions.',
+      'For a larger amount based on loss of income, file a fault-based claim under Section 166.',
+    ],
+    history:
+      'This replaced the older structured-formula Section 163A (inserted in 1994) as part of the 2019 overhaul of the accident claims chapter.',
+    related: ['mva-166'],
+    tags: ['compensation', 'no fault', 'death', 'grievous hurt', 'claim'],
+  },
+  {
+    id: 'mva-166',
+    source: 'MV Act 1988',
+    ref: 'Section 166',
+    title: 'Claims before the Motor Accident Claims Tribunal',
+    titleHi: 'मोटर दुर्घटना दावा अधिकरण (MACT)',
+    category: 'insurance',
+    audience: 'both',
+    summary:
+      'An injured person, the owner of damaged property, or the legal representatives of a person who died can apply to the Motor Accident Claims Tribunal (MACT) for compensation.',
+    keyPoints: [
+      'The application must be made within six months of the accident.',
+      'Police must file the Detailed Accident Report (DAR) with the Tribunal, which can treat it as the claim application.',
+      'Compensation is based on income, age, dependants and future prospects, using principles laid down by the Supreme Court (e.g. National Insurance v. Pranay Sethi, 2017).',
+    ],
+    related: ['mva-164', 'mva-161'],
+    tags: ['mact', 'claims tribunal', 'accident claim', 'compensation', 'dar'],
+  },
+  {
+    id: 'mva-162',
+    source: 'MV Act 1988',
+    ref: 'Section 162',
+    title: 'Golden-hour treatment scheme',
+    titleHi: 'गोल्डन आवर उपचार योजना',
+    category: 'accidents',
+    audience: 'both',
+    summary:
+      'Insurers must provide treatment for road accident victims, and the Central Government must make a scheme for cashless treatment during the golden hour (the first hour after an accident).',
+    keyPoints: [
+      'Under the Cashless Treatment of Road Accident Victims Scheme, 2025, victims are entitled to cashless treatment up to ₹1.5 lakh per person for up to 7 days at designated hospitals.',
+      'Hospitals must not refuse emergency care for lack of payment.',
+    ],
+    related: ['mva-134a'],
+    tags: ['golden hour', 'cashless treatment', 'hospital', 'emergency', 'accident victim'],
+  },
+
+  // ───────────── Enforcement ─────────────
+  {
+    id: 'mva-200',
+    source: 'MV Act 1988',
+    ref: 'Section 200',
+    title: 'Compounding of offences',
+    titleHi: 'अपराधों का शमन (कंपाउंडिंग)',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'Many traffic offences can be “compounded”: you pay a fixed amount to a notified officer and the case ends without going to court. The State Government notifies which officers can compound and the amounts.',
+    keyPoints: [
+      'Paying an e-challan online is effectively compounding the offence.',
+      'Compounding is voluntary. If you dispute a challan, you can refuse and the matter goes to court.',
+      'Serious offences such as drunk driving (Section 185) cannot be compounded on the spot under the central law — they go to court.',
+      'States may set compounding amounts; this is why the same offence can cost different amounts in different states.',
+    ],
+    related: ['mva-208', 'enf-echallan'],
+    tags: ['compounding', 'pay fine', 'settle challan', 'composition fee'],
+  },
+  {
+    id: 'mva-206',
+    source: 'MV Act 1988',
+    ref: 'Section 206',
+    title: 'Power to impound documents',
+    titleHi: 'दस्तावेज़ ज़ब्त करने की शक्ति',
+    category: 'enforcement',
+    audience: 'official',
+    summary:
+      'A police officer or other authorised person may impound a document they have reason to believe is false, and may seize a driving licence of a person accused of certain serious offences and forward it to the licensing authority for disqualification or revocation.',
+    keyPoints: [
+      'Licence seizure applies for offences under Sections 183, 184, 185, 189, 190, 194C, 194D and 194E (Section 206(4)).',
+      'The officer must give a temporary acknowledgement authorising the person to drive until the case is decided.',
+      'Where documents are in electronic form, seizure is recorded electronically.',
+    ],
+    related: ['mva-19', 'mva-207'],
+    tags: ['seize licence', 'impound', 'confiscate', 'acknowledgement', 'receipt'],
+  },
+  {
+    id: 'mva-207',
+    source: 'MV Act 1988',
+    ref: 'Section 207',
+    title: 'Detention of vehicles',
+    titleHi: 'वाहन को रोकना / ज़ब्त करना',
+    category: 'enforcement',
+    audience: 'official',
+    summary:
+      'A police officer or authorised person may seize and detain a vehicle used without registration, permit or licence, or in contravention of the permit, and give an acknowledgement. The vehicle is released on production of documents or after the case is disposed of.',
+    keyPoints: [
+      'Always issue a seizure memo / acknowledgement to the driver.',
+      'Release requires the owner to produce valid documents or pay the compounding amount.',
+    ],
+    tags: ['detain vehicle', 'seize vehicle', 'impound vehicle', 'release vehicle'],
+  },
+  {
+    id: 'mva-208',
+    source: 'MV Act 1988',
+    ref: 'Section 208',
+    title: 'Summary disposal and pleading guilty by post',
+    titleHi: 'संक्षिप्त निपटारा',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'For offences punishable with fine only, the court can let the accused plead guilty in writing and pay the fine without appearing in person.',
+    keyPoints: [
+      'Virtual courts now handle most traffic challans online in many states.',
+      'Unpaid challans are often referred to the National/State Lok Adalat for settlement.',
+    ],
+    related: ['mva-200', 'enf-echallan'],
+    tags: ['court', 'virtual court', 'lok adalat', 'plead guilty', 'summons'],
+  },
+  {
+    id: 'mva-210a',
+    source: 'MV Act 1988',
+    ref: 'Section 210A',
+    title: 'States can raise penalties',
+    titleHi: 'राज्य दंड बढ़ा सकते हैं',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'A State Government may, by notification, apply a multiplier of between 1 and 10 to the fines in the Act for that state (except some provisions).',
+    keyPoints: [
+      'This is why fines can differ from the central amounts shown in this app.',
+      'Always check your state’s notification or the challan itself for the actual amount.',
+    ],
+    related: ['mva-200'],
+    tags: ['state fine', 'multiplier', 'different fine', 'state notification'],
+  },
+  {
+    id: 'mva-210b',
+    source: 'MV Act 1988',
+    ref: 'Section 210B',
+    title: 'Double penalty for enforcing officers',
+    titleHi: 'प्रवर्तन अधिकारियों पर दोगुना दंड',
+    category: 'enforcement',
+    audience: 'official',
+    summary:
+      'Any authority empowered to enforce the Act who commits an offence under it is liable to twice the penalty for that offence.',
+    keyPoints: [
+      'Applies to police, MVD officers and others with enforcement powers.',
+      'Introduced in 2019 to reinforce that officers must lead by example.',
+    ],
+    tags: ['officer offence', 'police violation', 'double fine'],
+  },
+  {
+    id: 'mva-213',
+    source: 'MV Act 1988',
+    ref: 'Section 213',
+    title: 'Motor Vehicles Department and its officers',
+    titleHi: 'मोटर वाहन विभाग और उसके अधिकारी',
+    category: 'enforcement',
+    audience: 'official',
+    summary:
+      'The State Government may establish a Motor Vehicles Department and appoint officers (such as Motor Vehicles Inspectors). These officers can stop vehicles, inspect documents, enter premises to inspect vehicles, and exercise powers given by the Act.',
+    keyPoints: [
+      'MVD officers are deemed public servants under the Bharatiya Nyaya Sanhita.',
+      'They may require production of documents, inspect vehicles, and seize documents or vehicles in specified cases.',
+      'The State sets their uniform and qualifications in its own rules.',
+    ],
+    related: ['mva-206', 'mva-207', 'chk-roadside'],
+    tags: ['mvi', 'motor vehicles inspector', 'rto officer', 'enforcement officer', 'powers'],
+  },
+  {
+    id: 'mva-198a',
+    source: 'MV Act 1988',
+    ref: 'Section 198A',
+    title: 'Road contractor and authority liability',
+    titleHi: 'सड़क ठेकेदार की जवाबदेही',
+    category: 'safety',
+    audience: 'both',
+    summary:
+      'A designated authority, contractor, consultant or concessionaire responsible for road design, construction or maintenance who fails to follow prescribed standards, causing death or disability, is liable to a fine of up to ₹1,00,000, paid into the Motor Vehicle Accident Fund.',
+    keyPoints: [
+      'Introduced in 2019 to make road builders accountable for unsafe design (potholes, missing signage).',
+      'Courts consider the age of the road, traffic, and whether the accident was caused by the defect.',
+    ],
+    tags: ['pothole', 'road defect', 'contractor', 'bad road', 'nhai'],
+  },
+  {
+    id: 'mva-215b',
+    source: 'MV Act 1988',
+    ref: 'Section 215B',
+    title: 'National Road Safety Board',
+    titleHi: 'राष्ट्रीय सड़क सुरक्षा बोर्ड',
+    category: 'safety',
+    audience: 'official',
+    summary:
+      'The Central Government constitutes a National Road Safety Board to advise central and state governments on all aspects of road safety and traffic management.',
+    keyPoints: ['Inserted by the 2019 amendment, following recommendations of the Sundar Committee (2007).'],
+    tags: ['road safety board', 'policy', 'sundar committee'],
+  },
+
+  {
+    id: 'enf-echallan',
+    source: 'Procedure',
+    ref: 'e-Challan',
+    title: 'How to check, pay or contest an e-challan',
+    titleHi: 'ई-चालान कैसे देखें, भरें या चुनौती दें',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'An e-challan is an electronic notice of a traffic offence generated by police handheld devices or by cameras. It names the offence, the section of the MV Act, the amount, and the vehicle or licence number.',
+    keyPoints: [
+      'Check challans on the official Parivahan e-Challan portal or mParivahan app, using the vehicle number, licence number or challan number.',
+      'Paying online compounds the offence and closes the case.',
+      'If you believe it is wrong (wrong vehicle, cloned plate, emergency), raise a grievance on the portal, or decline to pay and contest it before the court/virtual court.',
+      'Unpaid challans are sent to the virtual court and may be settled at a Lok Adalat. Long-pending challans can block services such as RC transfer or licence renewal in many states.',
+      'Beware of fake challan messages: pay only on official government portals. Do not click payment links in SMS/WhatsApp from unknown numbers.',
+    ],
+    related: ['mva-136a', 'mva-200', 'mva-208'],
+    tags: ['e-challan', 'echallan', 'pay challan', 'contest challan', 'virtual court', 'lok adalat', 'fake challan', 'scam'],
+  },
+
+  // ───────────── Delhi ─────────────
+  {
+    id: 'dl-old-vehicles',
+    source: 'Delhi-NCR',
+    ref: 'NGT 2015 / Supreme Court 2018',
+    title: 'Age limit for vehicles in Delhi-NCR',
+    titleHi: 'दिल्ली-एनसीआर में वाहनों की आयु सीमा',
+    category: 'vehicle-standards',
+    audience: 'both',
+    jurisdiction: 'DL',
+    summary:
+      'Diesel vehicles older than 10 years and petrol vehicles older than 15 years may not ply in Delhi-NCR. The National Green Tribunal ordered this in 2015, and the Supreme Court upheld it in M.C. Mehta v. Union of India (October 2018).',
+    keyPoints: [
+      'Age is counted from the date of registration.',
+      'Such vehicles found on the road can be impounded by enforcement teams.',
+      'Owners can scrap the vehicle at a registered scrapping facility, or get an NOC to re-register it in a state where it is still allowed.',
+      'Check the Delhi Transport Department’s current notification for the procedure and any exemptions (e.g. electric conversion).',
+    ],
+    related: ['cmvr-115', 'off-192'],
+    tags: ['old vehicle', '10 year diesel', '15 year petrol', 'end of life', 'ncr ban', 'scrap', 'impound', 'delhi'],
+  },
+
+  // ───────────── CMVR 1989 ─────────────
+  {
+    id: 'cmvr-adtc',
+    source: 'CMVR 1989',
+    ref: 'Rules on Accredited Driver Training Centres (2021)',
+    title: 'Accredited Driver Training Centres (ADTC)',
+    titleHi: 'मान्यता प्राप्त ड्राइवर प्रशिक्षण केंद्र',
+    category: 'licensing',
+    audience: 'both',
+    summary:
+      'Rules notified in June 2021 (in force from 1 July 2021) allow accredited training centres with simulators and dedicated driving tracks to train and test drivers. A person who passes from an ADTC is exempt from the driving test at the RTO.',
+    keyPoints: [
+      'ADTCs need land, a test track, simulators and qualified trainers as prescribed.',
+      'Accreditation is granted by the State Government or its authority, typically for five years.',
+      'The ADTC certificate is uploaded to the licensing system for the applicant.',
+    ],
+    related: ['mva-9'],
+    tags: ['adtc', 'driving school', 'training centre', 'test exemption', 'simulator'],
+  },
+  {
+    id: 'cmvr-50',
+    source: 'CMVR 1989',
+    ref: 'Rule 50',
+    title: 'High Security Registration Plates (HSRP)',
+    titleHi: 'हाई सिक्योरिटी रजिस्ट्रेशन प्लेट',
+    category: 'vehicle-standards',
+    audience: 'both',
+    summary:
+      'Registration marks must be displayed on tamper-proof High Security Registration Plates with a chromium-based hologram, a laser-etched permanent identification number, and non-reusable snap locks. A third registration mark (sticker) goes on the windshield.',
+    keyPoints: [
+      'Mandatory for all new vehicles sold from 1 April 2019; many states have also mandated it for older vehicles.',
+      'The windscreen sticker is colour-coded by fuel type (e.g. light blue for petrol/CNG, orange for diesel).',
+      'Fancy fonts, stickers or tampered plates are an offence.',
+    ],
+    related: ['mva-39'],
+    tags: ['hsrp', 'number plate', 'registration plate', 'hologram', 'fancy number plate'],
+  },
+  {
+    id: 'cmvr-62',
+    source: 'CMVR 1989',
+    ref: 'Rule 62',
+    title: 'Validity of fitness certificate',
+    titleHi: 'फिटनेस प्रमाणपत्र की वैधता',
+    category: 'vehicle-standards',
+    audience: 'official',
+    summary:
+      'A new transport vehicle’s fitness certificate is valid for an initial period (generally two years) and must then be renewed periodically after inspection. Older vehicles need more frequent renewal, and the testing procedure is prescribed in detail.',
+    keyPoints: [
+      'Inspection covers brakes, steering, lights, tyres, emission, speed limiting device, reflective tape and more.',
+      'Check the latest notification for the renewal period that applies to the vehicle’s age and category.',
+      'The vehicle must be produced with the RC, insurance, PUC and permit (if any).',
+    ],
+    related: ['mva-56', 'chk-fitness'],
+    tags: ['fitness renewal', 'fc validity', 'inspection'],
+  },
+  {
+    id: 'cmvr-104',
+    source: 'CMVR 1989',
+    ref: 'Rule 104',
+    title: 'Reflectors and retro-reflective tape',
+    titleHi: 'रिफ्लेक्टर और रेट्रो-रिफ्लेक्टिव टेप',
+    category: 'vehicle-standards',
+    audience: 'official',
+    summary:
+      'Goods vehicles, trailers and certain other vehicles must carry red reflectors at the rear, and retro-reflective tapes/markings (red at the rear, yellow on the sides, white at the front) conforming to the prescribed standard.',
+    keyPoints: [
+      'Low visibility of trucks at night is a major cause of rear-end collisions.',
+      'Check tape for the prescribed standard marking and that it is clean and not peeling.',
+    ],
+    related: ['chk-fitness'],
+    tags: ['reflective tape', 'reflector', 'truck', 'night visibility'],
+  },
+  {
+    id: 'cmvr-115',
+    source: 'CMVR 1989',
+    ref: 'Rules 115–116',
+    title: 'Emission standards and PUC certificate',
+    titleHi: 'उत्सर्जन मानक और PUC',
+    category: 'vehicle-standards',
+    audience: 'both',
+    summary:
+      'Every vehicle must meet the emission standards for its class and carry a valid Pollution Under Control (PUC) certificate. A new vehicle’s first PUC is valid for one year; after that, PUC is generally valid for six months.',
+    keyPoints: [
+      'PUC certificates are issued online through the national PUC database linked to Vahan.',
+      'Officers can require a vehicle to be tested at a PUC centre.',
+      'Violating emission standards is punishable under Section 190(2).',
+    ],
+    history:
+      'India moved from Bharat Stage norms introduced in 2000 to BS-IV, and then leapfrogged BS-V to implement BS-VI nationwide from 1 April 2020.',
+    related: ['off-190-2'],
+    tags: ['puc', 'pollution', 'emission', 'bs6', 'bs-vi', 'smoke'],
+  },
+  {
+    id: 'cmvr-118',
+    source: 'CMVR 1989',
+    ref: 'Rule 118',
+    title: 'Speed limiting devices',
+    titleHi: 'गति सीमित करने वाले उपकरण',
+    category: 'vehicle-standards',
+    audience: 'official',
+    summary:
+      'Most transport vehicles must be fitted with a speed limiting device (speed governor) set to a maximum speed as prescribed. Exemptions include two- and three-wheelers, quadricycles, fire tenders, ambulances and police vehicles.',
+    keyPoints: [
+      'Check that the device is sealed, functional and set to the permitted speed during fitness inspection.',
+      'Tampering with the speed governor is an offence.',
+    ],
+    related: ['chk-fitness'],
+    tags: ['speed governor', 'speed limiter', 'sld', 'transport vehicle'],
+  },
+  {
+    id: 'cmvr-125h',
+    source: 'CMVR 1989',
+    ref: 'Rule 125H',
+    title: 'Vehicle location tracking and panic button',
+    titleHi: 'VLTD और पैनिक बटन',
+    category: 'vehicle-standards',
+    audience: 'official',
+    summary:
+      'Public service vehicles (buses, taxis and similar) registered on or after 1 January 2019 must be fitted with a Vehicle Location Tracking Device (VLTD) and one or more emergency (panic) buttons, as notified.',
+    keyPoints: [
+      'The device must be type-approved and linked to the state’s command and control centre.',
+      'Exemptions include two-wheelers, e-rickshaws, three-wheelers and vehicles without a permit requirement.',
+    ],
+    related: ['chk-fitness'],
+    tags: ['vltd', 'gps', 'panic button', 'women safety', 'taxi', 'bus'],
+  },
+  {
+    id: 'cmvr-138-7',
+    source: 'CMVR 1989',
+    ref: 'Rule 138(7)',
+    title: 'Child safety on two-wheelers',
+    titleHi: 'दोपहिया वाहन पर बच्चों की सुरक्षा',
+    category: 'safety',
+    audience: 'both',
+    summary:
+      'A child aged 9 months to 4 years riding as a pillion on a two-wheeler must wear a crash helmet (or a bicycle helmet meeting standards, until a BIS standard is notified) and be attached to the driver with a safety harness. The speed must not exceed 40 km/h.',
+    keyPoints: ['Effective from 15 February 2023.', 'Penalty falls under Section 194B(2) and related provisions.'],
+    related: ['mva-129', 'mva-128'],
+    tags: ['child', 'kid', 'harness', 'child helmet', 'pillion'],
+  },
+  {
+    id: 'cmvr-139',
+    source: 'CMVR 1989',
+    ref: 'Rule 139',
+    title: 'Producing documents for inspection',
+    titleHi: 'जाँच के लिए दस्तावेज़ प्रस्तुत करना',
+    category: 'enforcement',
+    audience: 'both',
+    summary:
+      'Documents (licence, RC, insurance, fitness, permit, PUC) may be produced in physical or electronic form through DigiLocker or mParivahan. If not available on the spot, they can be produced within 15 days.',
+    keyPoints: [
+      'Electronic records in DigiLocker/mParivahan have the same legal status as originals.',
+      'Officers can verify documents on the Vahan/Sarathi databases.',
+    ],
+    related: ['mva-130'],
+    tags: ['digilocker', 'mparivahan', 'electronic documents', 'show documents'],
+  },
+
+  // ───────────── Criminal law ─────────────
+  {
+    id: 'bns-281',
+    source: 'Bharatiya Nyaya Sanhita 2023',
+    ref: 'Section 281',
+    title: 'Rash driving on a public way',
+    titleHi: 'सार्वजनिक मार्ग पर लापरवाही से वाहन चलाना',
+    category: 'criminal',
+    audience: 'both',
+    summary:
+      'Driving a vehicle on a public way so rashly or negligently as to endanger human life or be likely to cause hurt is punishable with imprisonment up to 6 months, or fine up to ₹1,000, or both.',
+    keyPoints: [
+      'Replaced Section 279 of the Indian Penal Code from 1 July 2024.',
+      'Police often add this along with Section 184 of the MV Act.',
+    ],
+    related: ['off-184', 'bns-106'],
+    tags: ['rash driving', 'ipc 279', 'bns', 'negligent driving', 'criminal'],
+  },
+  {
+    id: 'bns-106',
+    source: 'Bharatiya Nyaya Sanhita 2023',
+    ref: 'Section 106',
+    title: 'Causing death by negligence',
+    titleHi: 'लापरवाही से मृत्यु कारित करना',
+    category: 'criminal',
+    audience: 'both',
+    summary:
+      'Causing death by a rash or negligent act not amounting to culpable homicide is punishable with imprisonment up to 5 years and fine (Section 106(1)). Section 106(2) provides up to 10 years for a driver who escapes without reporting the accident.',
+    keyPoints: [
+      'Replaced Section 304A IPC (which had a maximum of 2 years) from 1 July 2024.',
+      'Section 106(2) (hit-and-run) was kept on hold after transporters protested in January 2024; check its current status before relying on it.',
+      'A registered medical practitioner causing death during a medical procedure faces up to 2 years.',
+    ],
+    history:
+      'Under the IPC (1860), death by negligence carried a maximum of 2 years — long criticised as too lenient for fatal road crashes. The BNS raised it to 5 years and introduced a stiffer penalty for fleeing.',
+    related: ['bns-281', 'mva-134'],
+    tags: ['death', 'fatal accident', 'ipc 304a', 'hit and run', 'bns', 'criminal'],
+  },
+];
+
+export const LAW_CATEGORIES: { id: LawEntry['category']; label: string; labelHi: string }[] = [
+  { id: 'licensing', label: 'Licensing', labelHi: 'लाइसेंस' },
+  { id: 'registration', label: 'Registration', labelHi: 'पंजीकरण' },
+  { id: 'permits', label: 'Permits', labelHi: 'परमिट' },
+  { id: 'road-rules', label: 'Road rules', labelHi: 'सड़क नियम' },
+  { id: 'safety', label: 'Safety', labelHi: 'सुरक्षा' },
+  { id: 'accidents', label: 'Accidents', labelHi: 'दुर्घटना' },
+  { id: 'insurance', label: 'Insurance & claims', labelHi: 'बीमा व दावे' },
+  { id: 'enforcement', label: 'Enforcement', labelHi: 'प्रवर्तन' },
+  { id: 'vehicle-standards', label: 'Vehicle standards', labelHi: 'वाहन मानक' },
+  { id: 'criminal', label: 'Criminal law', labelHi: 'आपराधिक कानून' },
+];
